@@ -1,2 +1,2 @@
 # Quackter
---Cristian, Minerva y josé Germán
+**Cristian, Minerva y josé Germán**
