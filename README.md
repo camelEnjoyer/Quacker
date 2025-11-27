@@ -55,7 +55,13 @@ Copiar código
 cd ~/Descargas
 sudo dpkg -i dbeaver-ce*.deb
 sudo apt -f install
-Windows
+```
+
+
+#Windows
+
+```bash
+
 Instalar Git
 Descargar desde: https://git-scm.com/download/win
 
