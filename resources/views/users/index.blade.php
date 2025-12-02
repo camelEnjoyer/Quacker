@@ -12,6 +12,7 @@
     @foreach ($users as $user)
         {{ $user->nickname }}
         <a href="{{ route('users.edit', $user) }}">editar</a>
+        <a href="{{ route('users.show', $user) }}">ver perfil</a>
         <form action="{{ route("users.destroy", $user) }}" method="POST">
             @csrf
             @method('DELETE')

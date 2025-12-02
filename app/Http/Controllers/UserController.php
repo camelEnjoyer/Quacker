@@ -31,6 +31,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'full_name' => 'required',
             'nickname' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:3',
@@ -38,6 +39,7 @@ class UserController extends Controller
         ]);
 
         User::create([
+            'full_name' => $request->full_name,
             'nickname' => $request->nickname,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -69,12 +71,14 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
+            'full_name' => 'required',
             'nickname' => 'required|unique:users,nickname,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'bio' => 'nullable'
         ]);
 
         $user->update([
+            'full_name' => $request->full_name,
             'nickname' => $request->nickname,
             'email' => $request->email,
             'bio' => $request->bio,

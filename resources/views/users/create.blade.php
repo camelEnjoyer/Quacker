@@ -11,6 +11,7 @@
     <h1>Crear usuario</h1>
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
+        <input type="text" name="full_name" placeholder="Nombre completo" required>
         <input type="text" name="nickname" placeholder="nickname" required>
         <input type="email" name="email" placeholder="example@gmail.com" required>
         <input type="password" name="password" placeholder="contraseña" required>
