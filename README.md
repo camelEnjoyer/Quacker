@@ -1,8 +1,7 @@
-# 🐦 Quacker - Proyecto Laravel
+# Proyecto Quacker
 
-Quacker es una aplicación web desarrollada con **Laravel 12** y **PHP 8.5**, utilizando **Blade** para el frontend. El proyecto emplea **MySQL** como base de datos y está diseñado para ejecutarse fácilmente en **Windows** y **Linux**.
-
-**Repositorio público:** [https://github.com/cristiann05/Quacker](https://github.com/cristiann05/Quacker)
+Backend en **Laravel** con base de datos **MySQL**.  
+Este README explica cómo instalar y configurar todo desde cero, tanto en **Linux** como en **Windows**.
 
 ---
 
