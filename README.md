@@ -1,64 +1,135 @@
-<<<<<<< HEAD
-# Quacker
-**Cristian, Minerva y josé Germán**
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Proyecto Quacker
+a
+Backend en **Laravel** con base de datos **MySQL**.  
+Este README explica cómo instalar y configurar todo desde cero, tanto en **Linux** como en **Windows**.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## 1️⃣ Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Sistema operativo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Linux (Ubuntu, Debian, Linux Mint)  
+- Windows 10/11
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Software necesario
 
-## Learning Laravel
+- **PHP** >= 8.0  
+- **Composer** (gestor de dependencias PHP)  
+- **MySQL** (servidor de base de datos)  
+- **DBeaver** (opcional, administración visual de DB)  
+- **Git** (para clonar el proyecto)  
+- **Node.js + npm** (opcional, si usas frontend)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 2️⃣ Instalación de herramientas
 
-## Laravel Sponsors
+### Linux (Debian / Mint / Ubuntu)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+# 2.1 Instalar Git y PHP
+sudo apt update
+sudo apt install git php php-cli php-mbstring php-bcmath php-curl php-xml unzip curl
 
-### Premium Partners
+# 2.2 Instalar Composer
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+composer --version
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# 2.3 Instalar MySQL
+sudo apt install mysql-server
+sudo systemctl start mysql
+sudo systemctl enable mysql
+sudo mysql_secure_installation
 
-## Contributing
+# 2.4 Instalar DBeaver (opcional)
+# Descargar .deb desde: https://dbeaver.io/download/
+cd ~/Descargas
+sudo dpkg -i dbeaver-ce*.deb
+sudo apt -f install
+# 2.1 Instalar Git
+# Descargar desde: https://git-scm.com/download/win
+# Ejecutar instalador y seguir pasos.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 2.2 Instalar PHP
+# Descargar desde: https://windows.php.net/download/
+# Configurar variable de entorno PATH.
 
-## Code of Conduct
+# 2.3 Instalar Composer
+# Descargar desde: https://getcomposer.org/download/
+# Ejecutar instalador y seguir pasos.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 2.4 Instalar MySQL
+# Descargar desde: https://dev.mysql.com/downloads/mysql/
+# Durante instalación, establecer contraseña de root.
 
-## Security Vulnerabilities
+# 2.5 Instalar DBeaver (opcional)
+# Descargar desde: https://dbeaver.io/download/
+# Ejecutar instalador y seguir pasos.
+# Conectarse a MySQL como root
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Linux:
+sudo mysql -u root -p
 
-## License
+# Windows: usar MySQL Workbench o línea de comandos de MySQL
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> e947436 (Initial commit of Laravel Quacker project)
+# Crear base de datos y usuario
+CREATE DATABASE Quacker;
+CREATE USER 'Quacker'@'localhost' IDENTIFIED BY '1599';
+GRANT ALL PRIVILEGES ON Quacker.* TO 'Quacker'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+4️⃣ Clonar el proyecto
+git clone https://github.com/cristiann05/Quacker.git
+cd Quacker
+
+5️⃣ Instalar dependencias con Composer
+composer install
+
+6️⃣ Configurar Laravel
+# Copiar .env.example a .env
+# Linux
+cp .env.example .env
+
+# Windows
+copy .env.example .env
+
+# Editar .env con los datos de la base de datos
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=Quacker
+DB_USERNAME=Quacker
+DB_PASSWORD=1599
+
+# Limpiar caché de Laravel
+php artisan config:clear
+php artisan cache:clear
+php artisan config:cache
+
+7️⃣ Ejecutar migraciones
+php artisan migrate
+# Esto creará todas las tablas necesarias en la base de datos
+
+8️⃣ Levantar servidor de desarrollo
+php artisan serve
+# URL por defecto: http://127.0.0.1:8000
+
+9️⃣ Conectar con DBeaver (opcional)
+# Abrir DBeaver → Nueva conexión → MySQL
+# Configurar:
+# Host: localhost
+# Puerto: 3306
+# Usuario: Quacker
+# Contraseña: 1599
+# Base de datos: Quacker
+
+🔟 Notas adicionales
+# Crear modelos y migraciones
+php artisan make:model NombreModelo -m
+php artisan migrate
+
+# Para frontend (opcional)
+npm install
+npm run dev
