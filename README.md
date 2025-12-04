@@ -1,5 +1,5 @@
 # Proyecto Quacker
-
+a
 Backend en **Laravel** con base de datos **MySQL**.  
 Este README explica cómo instalar y configurar todo desde cero, tanto en **Linux** como en **Windows**.
 
