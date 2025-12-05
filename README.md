@@ -1,135 +1,122 @@
-# Proyecto Quacker
+# 🐦 Quacker - Proyecto Laravel
 
-Backend en **Laravel** con base de datos **MySQL**.  
-Este README explica cómo instalar y configurar todo desde cero, tanto en **Linux** como en **Windows**.
+Quacker es una aplicación web desarrollada con **Laravel 12** y **PHP 8.5**, utilizando **Blade** para el frontend. El proyecto emplea **MySQL** como base de datos y está diseñado para ejecutarse fácilmente en **Windows** y **Linux**.
 
----
-
-## 1️⃣ Requisitos
-
-### Sistema operativo
-
-- Linux (Ubuntu, Debian, Linux Mint)  
-- Windows 10/11
-
-### Software necesario
-
-- **PHP** >= 8.0  
-- **Composer** (gestor de dependencias PHP)  
-- **MySQL** (servidor de base de datos)  
-- **DBeaver** (opcional, administración visual de DB)  
-- **Git** (para clonar el proyecto)  
-- **Node.js + npm** (opcional, si usas frontend)
+**Repositorio público:** [https://github.com/cristiann05/Quacker](https://github.com/cristiann05/Quacker)
 
 ---
 
-## 2️⃣ Instalación de herramientas
+## 📋 Requisitos previos
 
-### Linux (Debian / Mint / Ubuntu)
+Antes de ejecutar el proyecto, asegúrate de tener instalados los siguientes componentes:
+
+- **PHP** 8.5 o superior
+- **Composer** (gestor de dependencias de PHP)
+- **MySQL** (servidor de base de datos)
+- **Git** (opcional, para clonar el repositorio)
+
+---
+
+## 🚀 Instalación y configuración
+
+### 1️⃣ Clonar el repositorio
 
 ```bash
-# 2.1 Instalar Git y PHP
-sudo apt update
-sudo apt install git php php-cli php-mbstring php-bcmath php-curl php-xml unzip curl
-
-# 2.2 Instalar Composer
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-composer --version
-
-# 2.3 Instalar MySQL
-sudo apt install mysql-server
-sudo systemctl start mysql
-sudo systemctl enable mysql
-sudo mysql_secure_installation
-
-# 2.4 Instalar DBeaver (opcional)
-# Descargar .deb desde: https://dbeaver.io/download/
-cd ~/Descargas
-sudo dpkg -i dbeaver-ce*.deb
-sudo apt -f install
-# 2.1 Instalar Git
-# Descargar desde: https://git-scm.com/download/win
-# Ejecutar instalador y seguir pasos.
-
-# 2.2 Instalar PHP
-# Descargar desde: https://windows.php.net/download/
-# Configurar variable de entorno PATH.
-
-# 2.3 Instalar Composer
-# Descargar desde: https://getcomposer.org/download/
-# Ejecutar instalador y seguir pasos.
-
-# 2.4 Instalar MySQL
-# Descargar desde: https://dev.mysql.com/downloads/mysql/
-# Durante instalación, establecer contraseña de root.
-
-# 2.5 Instalar DBeaver (opcional)
-# Descargar desde: https://dbeaver.io/download/
-# Ejecutar instalador y seguir pasos.
-# Conectarse a MySQL como root
-
-# Linux:
-sudo mysql -u root -p
-
-# Windows: usar MySQL Workbench o línea de comandos de MySQL
-
-# Crear base de datos y usuario
-CREATE DATABASE Quacker;
-CREATE USER 'Quacker'@'localhost' IDENTIFIED BY '1599';
-GRANT ALL PRIVILEGES ON Quacker.* TO 'Quacker'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-4️⃣ Clonar el proyecto
 git clone https://github.com/cristiann05/Quacker.git
 cd Quacker
+```
 
-5️⃣ Instalar dependencias con Composer
+### 2️⃣ Instalar dependencias de PHP
+
+```bash
 composer install
+```
 
-6️⃣ Configurar Laravel
-# Copiar .env.example a .env
-# Linux
+### 3️⃣ Configurar el archivo de entorno `.env`
+
+**En Linux / macOS:**
+```bash
 cp .env.example .env
+```
+
+**En Windows (CMD o PowerShell):**
+```cmd
+copy .env.example .env
+```
+
+Abre el archivo `.env` y configura las credenciales de tu base de datos MySQL:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=quacker
+DB_USERNAME=root
+DB_PASSWORD=tu_contraseña_aqui
+
+SESSION_DRIVER=database
+```
+
+> ⚠️ **Importante:** Asegúrate de crear la base de datos `quacker` en MySQL antes de continuar:
+> ```sql
+> CREATE DATABASE quacker;
+> ```
+
+### 4️⃣ Generar la clave de aplicación
+
+```bash
+php artisan key:generate
+```
+
+### 5️⃣ Crear tabla de sesiones y ejecutar migraciones
+
+```bash
+php artisan session:table
+php artisan migrate
+```
+
+### 6️⃣ Ejecutar el servidor de desarrollo
+
+```bash
+php artisan serve
+```
+
+Abre tu navegador y accede a:
+```
+http://127.0.0.1:8000
+```
+
+---
+
+## 🔧 Solución de problemas comunes
+
+### ❌ Error: "Tabla sessions no existe"
+
+Ejecuta los siguientes comandos:
+```bash
+php artisan session:table
+php artisan migrate
+```
+
+### ❌ Error de conexión a MySQL
+
+- Verifica que las credenciales en el archivo `.env` sean correctas
+- Asegúrate de que el servicio MySQL esté ejecutándose
+- Confirma que la base de datos `quacker` esté creada
+
+**Verificar estado de MySQL:**
+```bash
+# Linux
+sudo systemctl status mysql
 
 # Windows
-copy .env.example .env
+services.msc  # Busca "MySQL" en la lista
+```
 
-# Editar .env con los datos de la base de datos
-DB_CONNECTION=mysql
-DB_HOST=localhost
-DB_PORT=3306
-DB_DATABASE=Quacker
-DB_USERNAME=Quacker
-DB_PASSWORD=1599
+### ❌ Error de permisos en Linux
 
-# Limpiar caché de Laravel
-php artisan config:clear
-php artisan cache:clear
-php artisan config:cache
-
-7️⃣ Ejecutar migraciones
-php artisan migrate
-# Esto creará todas las tablas necesarias en la base de datos
-
-8️⃣ Levantar servidor de desarrollo
-php artisan serve
-# URL por defecto: http://127.0.0.1:8000
-
-9️⃣ Conectar con DBeaver (opcional)
-# Abrir DBeaver → Nueva conexión → MySQL
-# Configurar:
-# Host: localhost
-# Puerto: 3306
-# Usuario: Quacker
-# Contraseña: 1599
-# Base de datos: Quacker
-
-🔟 Notas adicionales
-# Crear modelos y migraciones
-php artisan make:model NombreModelo -m
-php artisan migrate
-
-# Para frontend (opcional)
-npm install
-npm run dev
+Si encuentras problemas de permisos, ejecuta:
+```bash
+chmod -R 775 storage bootstrap/cache
+chown -R $USER:www-data storage bootstrap/cache
+```
