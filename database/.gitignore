@@ -1,1 +1,50 @@
-*.sqlite*
+# Variables de entorno y secretos
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+secrets.json
+config/secrets.yml
+
+# Credenciales y tokens
+*.log
+credentials.json
+token.json
+.aws/
+.gcloud/
+
+# Base de datos
+*.db
+*.sqlite
+*.sqlite3
+db.sqlite3
+database.yml
+
+# Configuración local
+config/local.js
+config/development.js
+.vscode/settings.json
+.idea/
+
+# Node modules (si es JS/Node)
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Build y dist
+dist/
+build/
+*.min.js
+*.min.css
