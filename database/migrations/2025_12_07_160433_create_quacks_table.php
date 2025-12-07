@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\NullableType;
 
 return new class extends Migration
 {
@@ -11,9 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quashtags', function (Blueprint $table) {
+        Schema::create('quacks', function (Blueprint $table) { 
             $table->id();
-            $table->string('name');
+            $table->string('user_nickname'); //Como no hay migración lo hago asi.
+            $table->string('contenido', 280);
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('quashtags');
+        Schema::dropIfExists('quacks');
     }
 };

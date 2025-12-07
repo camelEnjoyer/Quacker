@@ -20,7 +20,8 @@
 <body>
     <h1>QUACKER</h1>
     <img src="{{ asset('images/quacker_logo.svg') }}" alt="logo quacker">
-    <a href="/users">Lista de Usuarios</a>
+    <a href="/users">Lista de Usuarios</a> 
+    <a href="/quacks">Lista de Quacks</a>
 </body>
 
 </html>
