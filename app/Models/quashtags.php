@@ -9,9 +9,5 @@ class quashtags extends Model
 {
     /** @use HasFactory<\Database\Factories\QuashtagsFactory> */
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'created_at',
-        'updated_at'
-    ];
+    protected $fillable = ['name'];
 }
