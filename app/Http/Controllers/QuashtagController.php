@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\quashtags;
+use App\Models\Quashtag;
 use Illuminate\Http\Request;
 
 class QuashtagController extends Controller
@@ -12,7 +12,7 @@ class QuashtagController extends Controller
      */
     public function index()
     {
-        $quashtag = quashtags::all();
+        $quashtag = Quashtag::all();
         return view('quashtags.index', [
             'quashtags' => $quashtag
         ]);
@@ -30,13 +30,13 @@ class QuashtagController extends Controller
      */
     public function store(Request $request)
     {
-        quashtags::create($request->all());
+        Quashtag::create($request->all());
         return redirect('/quashtags');
     }
     /**
      * Display the specified resource.
      */
-    public function show(quashtags $quashtag)
+    public function show(Quashtag $quashtag)
     {
         return view('quashtags.show', [
             'quashtags' => $quashtag
@@ -45,7 +45,7 @@ class QuashtagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(quashtags $quashtag)
+    public function edit(Quashtag $quashtag)
     {
         return view('quashtags.edit', [
             'quashtag' => $quashtag
@@ -54,7 +54,7 @@ class QuashtagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, quashtags $quashtag)
+    public function update(Request $request, Quashtag $quashtag)
     {
         $quashtag->update($request->all());
         return redirect('/quashtags');
@@ -62,7 +62,7 @@ class QuashtagController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(quashtags $quashtag)
+    public function destroy(Quashtag $quashtag)
     {
         $quashtag->delete();
         return redirect('/quashtags');

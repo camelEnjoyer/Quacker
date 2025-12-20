@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Quack;
 use App\Models\Quav;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
 
