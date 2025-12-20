@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\quashtags>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Quashtag>
  */
 class QuashtagsFactory extends Factory
 {
