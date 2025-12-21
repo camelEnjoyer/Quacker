@@ -39,9 +39,9 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id');
     }
 
-    public function requacks(){
-        // añadir cuando este el modelo Requack -> return $this->hasMany(Requack::class);
+    public function requacks()
+    {
+        return $this->hasMany(Requack::class);
     }
-
 
 }
