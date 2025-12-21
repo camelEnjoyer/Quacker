@@ -19,3 +19,4 @@ Route::get('/home', function () {
 })->middleware('auth');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 ?>
+

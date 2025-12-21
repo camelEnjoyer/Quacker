@@ -10,7 +10,7 @@
 <body>
     <h1>TODOS LOS QUACKS</h1>
     @foreach ($quacks as $quack)
-        <p>{{ '@' . $quack->user_nickname }}</p>
+        <p>{{ '@' . $quack->user->nickname }}</p>
         <p>Ha escrito: {{ $quack->contenido }}</p>
         <p>Creado: {{ $quack->created_at }}</p>
         <a href="{{ route('quacks.edit', $quack) }}">editar</a>

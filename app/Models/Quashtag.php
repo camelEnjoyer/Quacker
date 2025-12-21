@@ -10,4 +10,8 @@ class Quashtag extends Model
     /** @use HasFactory<\Database\Factories\QuashtagsFactory> */
     use HasFactory;
     protected $fillable = ['name'];
+
+    public function quack(){
+        return $this->belongsTo(Quack::class);
+    }
 }

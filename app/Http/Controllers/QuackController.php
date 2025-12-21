@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quack;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class QuackController extends Controller
@@ -31,7 +32,8 @@ class QuackController extends Controller
      */
     public function store(Request $request)
     {
-        Quack::create(request()->all());
+
+        Quack::create($request->all());
 
         return redirect('/quacks');
     }
