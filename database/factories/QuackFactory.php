@@ -2,6 +2,7 @@
 namespace Database\Factories;
 
 use App\Models\Quack;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuackFactory extends Factory
@@ -11,7 +12,7 @@ class QuackFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_nickname' => fake()->userName(),
+            'user_id' => User::factory(),
             'contenido' => fake()->sentence(12),
         ];
     }

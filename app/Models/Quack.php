@@ -9,8 +9,22 @@ class Quack extends Model
 {
     /** @use HasFactory<\Database\Factories\QuackFactory> */
     use HasFactory;
+
     protected $fillable = [
-        'user_nickname',
+        'user_id',
         'contenido'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function quavs(){
+        return $this->hasMany(Quav::class);
+    }
+
+    public function requacks(){
+        return $this->hasMany(Requack::class);
+    }
+
 }

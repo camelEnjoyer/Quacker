@@ -22,6 +22,8 @@
         </form>
     @endforeach
     <a href="/quacks/create">Crear nuevo quack</a>
+    <a href="/">Volver al inicio</a>
+
 </body>
 
 </html>
