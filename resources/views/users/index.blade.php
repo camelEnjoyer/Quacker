@@ -20,6 +20,8 @@
         </form>
     @endforeach
     <a href="/users/create">Crear nuevo usuario</a>
+    <a href="/">Volver al inicio</a>
+
 </body>
 
 </html>

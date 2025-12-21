@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Pcntl\QosClass;
 
 class Quack extends Model
 {
@@ -13,4 +14,8 @@ class Quack extends Model
         'user_nickname',
         'contenido'
     ];
+
+    public function quashtag(){
+        return $this->belongsTo(Quashtag::class);
+    }
 }

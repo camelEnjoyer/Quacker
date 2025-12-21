@@ -22,6 +22,8 @@
     <img src="{{ asset('images/quacker_logo.svg') }}" alt="logo quacker">
     <a href="/users">Lista de Usuarios</a> 
     <a href="/quacks">Lista de Quacks</a>
+    <a href="/login">Iniciar Sesión</a>
+    <a href="/quashtags">Listas de Quashtags</a>
 </body>
 
 </html>

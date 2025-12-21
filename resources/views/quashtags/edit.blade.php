@@ -9,7 +9,7 @@
 <body>
     <form action="{{ route('quashtags.update', $quashtag->id) }}" method="post">
         @csrf
-        @method('PATCH')
+        @method('PUT')
         <label for="nombre">Quashtag:</label>
         <input type="text" id="name" name="name" value="{{ $quashtag->name }}" required>
         <input type="submit" value="Editar quashtag">

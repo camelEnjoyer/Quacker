@@ -61,20 +61,28 @@ SESSION_DRIVER=database
 > CREATE DATABASE quacker;
 > ```
 
-### 4️⃣ Generar la clave de aplicación
+### 4️⃣ Ejecutar seeders para poblar la base de datos
+
+Para llenar la base de datos con datos de prueba (usuarios, quacks y quashtags), ejecuta:
+
+```bash
+php artisan migrate:refresh --seed
+```
+
+### 5️⃣ Generar la clave de aplicación
 
 ```bash
 php artisan key:generate
 ```
 
-### 5️⃣ Crear tabla de sesiones y ejecutar migraciones
+### 6️⃣ Crear tabla de sesiones y ejecutar migraciones
 
 ```bash
 php artisan session:table
 php artisan migrate
 ```
 
-### 6️⃣ Ejecutar el servidor de desarrollo
+### 7️⃣ Ejecutar el servidor de desarrollo
 
 ```bash
 php artisan serve
