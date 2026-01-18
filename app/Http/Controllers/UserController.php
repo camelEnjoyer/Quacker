@@ -46,7 +46,7 @@ class UserController extends Controller
             'bio' => $request->bio,
         ]);
 
-        return redirect()->route('users.index');
+        return redirect('/login'); //ERROR
     }
 
     /**
