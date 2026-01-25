@@ -98,6 +98,20 @@
 
 <body>
 
+    @section('content')
+        <div class="container">
+            @foreach ($quacks as $q)
+                <div class="feed-card">
+                    <strong>{{ '@' . $q->user->nickname }}</strong>
+                    <p>{{ $q->contenido }}</p>
+                    <small>{{ $q->created_at->format('d/m/Y H:i') }}</small>
+                </div>
+            @endforeach
+
+        </div>
+    @endsection
+
+
     <div class="profile-card">
         <div class="profile-header">
             <h1 class="profile-name">

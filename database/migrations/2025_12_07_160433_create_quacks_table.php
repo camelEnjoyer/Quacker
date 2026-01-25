@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('quacks', function (Blueprint $table) { 
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete();
             $table->string('contenido', 280);
             $table->timestamps();
         });
