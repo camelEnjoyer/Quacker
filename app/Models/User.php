@@ -63,4 +63,24 @@ class User extends Authenticatable
             'follower_id'
         );
     }
+
+    // Popularidad: total de quavers (likes) de todos sus quacks
+    public function getPopularidadAttribute()
+    {
+        $total = 0;
+        foreach ($this->quacks as $quack) {
+            $total += $quack->quavers()->count();
+        }
+        return $total;
+    }
+
+    // Viralidad: total de requacks de todos sus quacks
+    public function getViralidadAttribute()
+    {
+        $total = 0;
+        foreach ($this->quacks as $quack) {
+            $total += $quack->requackers()->count();
+        }
+        return $total;
+    }
 }

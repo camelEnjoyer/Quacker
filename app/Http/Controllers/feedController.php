@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quack;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -15,18 +16,25 @@ class feedController extends Controller
     {
         $user = Auth::user();
 
-        // IDs de los usuarios que sigo + yo mismo
-        $userIds = $user->follows()->pluck('followed_id')->toArray();
-        $userIds[] = $user->id;
+        // Usuarios que sigo + yo
+        $follows = $user->follows()->pluck('id')->toArray();
+        $userIds = array_merge([$user->id], $follows);
 
-        // Solo quacks de esos usuarios, ordenados por fecha
+        // Quacks de esos usuarios
         $quacks = Quack::with('user')
             ->whereIn('user_id', $userIds)
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('feed', compact('quacks'));
+        // Usuarios que no sigo (para sugerencias / perfiles)
+        $otherUsers = User::where('id', '!=', $user->id)
+            ->whereNotIn('id', $follows)
+            ->get();
+
+        return view('feed', compact('quacks', 'otherUsers'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.

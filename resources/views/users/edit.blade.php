@@ -143,8 +143,9 @@
             <div class="success">{{ session('success') }}</div>
         @endif
 
-        <form method="POST" action="{{ route('users.update') }}">
+        <form method="POST" action="{{ route('users.update', $user) }}">
             @csrf
+            @method('PUT') <!-- IMPORTANTE: porque la ruta es PUT -->
 
             <input type="text" name="full_name" placeholder="Nombre completo"
                 value="{{ old('full_name', $user->full_name) }}">
@@ -176,6 +177,7 @@
 
             <input type="submit" value="Guardar cambios">
         </form>
+
 
         <div class="back">
             <a href="/feed">Volver al feed</a>

@@ -27,6 +27,7 @@ class Quack extends Model
     }
 
     // Usuarios que han dado like (quavs)
+    // Usuarios que han dado like (quavs)
     public function quavers()
     {
         return $this->belongsToMany(
@@ -34,6 +35,7 @@ class Quack extends Model
             'quavs'
         );
     }
+
 
     // Usuarios que han requackeado
     public function requackers()

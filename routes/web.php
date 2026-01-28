@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\feedController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\QuackController;
 use App\Http\Controllers\QuashtagController;
 use App\Http\Controllers\SessionController;
@@ -19,17 +20,21 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-// Login
+// LOGIN
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 
-// Rutas de usuarios públicas
+// REGISTER
+Route::get('/register', [UserController::class, 'create'])->name('users.create');
+Route::post('/register', [UserController::class, 'store'])->name('users.store');
+
+// Perfil de usuario público
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::get('/users/{user}/quacks', [UserQuacksController::class, 'index'])->name('users.quacks');
 
-// Recursos públicos (quacks y quashtags)
+// Recursos públicos: Quacks y Quashtags
 Route::resource('quacks', QuackController::class)->only(['index', 'show']);
 Route::resource('quashtags', QuashtagController::class)->only(['index', 'show']);
-
 
 /*
 |--------------------------------------------------------------------------
@@ -44,10 +49,17 @@ Route::middleware('auth')->group(function () {
     // Logout
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
-    // Perfil del usuario
-    Route::get('/users/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::post('/users/edit', [UserController::class, 'update'])->name('users.update');
+    // Perfil: Editar / Update
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
-    // CRUD completo de usuarios (opcional, si admin puede gestionar usuarios)
-    Route::resource('users', UserController::class)->except(['show']);
+    // Búsqueda de usuarios
+    Route::get('/search-users', [UserController::class, 'search'])->name('users.search');
+
+    // CRUD completo de usuarios excepto crear y registrar
+    Route::resource('users', UserController::class)->except(['create', 'store', 'show']);
+
+    // Seguimiento
+    Route::post('/follow/{user}', [FollowController::class, 'follow'])->name('follow');
+    Route::post('/unfollow/{user}', [FollowController::class, 'unfollow'])->name('unfollow');
 });
