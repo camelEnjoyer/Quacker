@@ -18,7 +18,6 @@
                 @usuario_borrado
             @endif
         </p>
-        <p>{{ '@' . $quack->user->nickname }}</p>
         <p>Ha escrito: {{ $quack->contenido }}</p>
         <p>Creado: {{ $quack->created_at }}</p>
     @endforeach

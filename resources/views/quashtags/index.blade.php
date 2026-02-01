@@ -30,6 +30,9 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit">Eliminar</button>
+                            <a href="{{ route('quashtags.quacks', $quashtag->id) }}">
+                                Ver quacks
+                            </a>
                         </form>
                     </td>
                 </tr>

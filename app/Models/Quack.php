@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Pcntl\QosClass;
 
 class Quack extends Model
 {
-    /** @use HasFactory<\Database\Factories\QuackFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -16,19 +14,35 @@ class Quack extends Model
         'contenido'
     ];
 
-    public function quashtag(){
-        return $this->belongsTo(Quashtag::class);
-    }
-    public function user(){
+    // Autor del quack
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function quavs(){
-        return $this->hasMany(Quav::class);
+    // Hashtags del quack (N:N)
+    public function quashtags()
+    {
+        return $this->belongsToMany(Quashtag::class);
     }
 
-    public function requacks(){
-        return $this->hasMany(Requack::class);
+    // Usuarios que han dado like (quavs)
+    // Usuarios que han dado like (quavs)
+    public function quavers()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'quavs'
+        );
     }
 
+
+    // Usuarios que han requackeado
+    public function requackers()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'requacks'
+        );
+    }
 }

@@ -10,8 +10,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            QuackSeeder::class,
             QuashtagSeeder::class,
+            QuackSeeder::class,
         ]);
     }
 }

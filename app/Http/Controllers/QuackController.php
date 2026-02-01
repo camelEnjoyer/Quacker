@@ -73,7 +73,51 @@ class QuackController extends Controller
      */
     public function destroy(Quack $quack)
     {
+        if ($quack->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         $quack->delete();
-        return redirect('/quacks');
+        return redirect('/feed');
+    }
+
+    public function quav(Quack $quack)
+    {
+        $user = auth()->user();
+
+        // Evita que el usuario dé like varias veces
+        if (!$quack->quavers->contains($user->id)) {
+            $quack->quavers()->attach($user->id);
+        }
+
+        return redirect('/feed');
+    }
+
+    public function unquav(Quack $quack)
+    {
+        $user = auth()->user();
+        $quack->quavers()->detach($user->id);
+
+        return redirect('/feed');
+    }
+
+    public function requack(Quack $quack)
+    {
+        $user = auth()->user();
+
+        // Evitar requack duplicado
+        if (!$quack->requackers->contains($user->id)) {
+            $quack->requackers()->attach($user->id);
+        }
+
+        return redirect()->back();
+    }
+
+    public function unrequack(Quack $quack)
+    {
+        $user = auth()->user();
+        $quack->requackers()->detach($user->id);
+
+        return redirect()->back();
     }
 }

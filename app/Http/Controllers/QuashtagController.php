@@ -67,4 +67,15 @@ class QuashtagController extends Controller
         $quashtag->delete();
         return redirect('/quashtags');
     }
+
+    public function quacks(Quashtag $quashtag)
+    {
+        // Obtener los quacks asociados al quashtag
+        $quacks = $quashtag->quacks()
+            ->with('user')            
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('quashtags.quacks', compact('quacks', 'quashtag'));
+    }
 }

@@ -112,7 +112,7 @@
 
         <div class="actions">
             <a href="/login" class="btn btn-primary">Iniciar sesión</a>
-            <a href="/users/create" class="btn btn-secondary">Registrarse</a>
+            <a href="/register" class="btn btn-secondary">Registrarse</a>
             <a href="/quacks" class="btn btn-secondary">Ver Quacks</a>
             <a href="/users" class="btn btn-secondary">Usuarios</a>
             <a href="/quashtags" class="btn btn-secondary">Quashtags</a>

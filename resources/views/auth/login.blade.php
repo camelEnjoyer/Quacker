@@ -174,14 +174,15 @@
         <form action="/login" method="POST">
             @csrf
 
-            <label>Email</label>
-            <input type="email" name="email" placeholder="correo@ejemplo.com">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com"
+                value="{{ old('email') }}">
 
             @error('email')
                 <p class="error">{{ $message }}</p>
             @enderror
 
-            <label>Contraseña</label>
+            <label for="password">Contraseña</label>
             <input type="password" name="password" placeholder="Contraseña">
 
             @error('password')

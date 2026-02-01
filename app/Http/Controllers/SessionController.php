@@ -27,7 +27,7 @@ class SessionController extends Controller
         }
 
         request()->session()->regenerate();
-        return redirect('/home');
+        return redirect('/feed');
     }
 
     public function destroy(Request $request)
@@ -39,5 +39,4 @@ class SessionController extends Controller
 
         return redirect('/login');
     }
-
 }
