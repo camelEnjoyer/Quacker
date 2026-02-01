@@ -223,6 +223,31 @@
             cursor: pointer;
             font-weight: bold;
         }
+
+        .textarea-quack {
+            width: 100%;
+            padding: 14px;
+            background: #16181c;
+            border: 1px solid #2f3336;
+            border-radius: 16px;
+            color: #e7e9ea;
+            font-size: 16px;
+            line-height: 1.4;
+            resize: none;
+            outline: none;
+            transition: border-color .2s ease, background .2s ease;
+        }
+
+        .textarea-quack::placeholder {
+            color: #71767b;
+        }
+
+        .textarea-quack:focus {
+            border-color: #1da1f2;
+            background: #1a1c20;
+        }
+
+
         /* RESPONSIVE */
         @media(max-width:1024px) {
             .container {
@@ -273,12 +298,10 @@
             @method('DELETE')
 
             <button
-                style="margin-top:10px; width:100%; border:1px solid red; color:red; background:transparent; padding:6px; border-radius:999px;">
+                style="margin-top:10px; width:100%; border:1px solid red; color:red; background:transparent; padding:6px; border-radius:999px; cursor: pointer">
                 Borrar cuenta
             </button>
         </form>
-
-
 
         <!-- COLUMNA IZQUIERDA: PERFIL -->
         <div class="col" style="flex:0 0 250px;">
@@ -305,6 +328,16 @@
                         style="width:100%; border:none; background:transparent; color:#f4212e; cursor:pointer;">
                 </form>
             </div>
+
+            <form action="/feed" method="POST">
+                @csrf
+                <textarea class="textarea-quack" name="contenido" id="content" rows="3" placeholder="Que estas pensando?" required></textarea>
+                <button 
+                type="submit"
+                style="margin-top:10px; width:100%; border:1px solid lightblue; color:lightblue; background:transparent; padding:6px; border-radius:999px; cursor: pointer">
+                    Escribe lo que estas pensando...🦆
+                </button>
+            </form>
         </div>
 
         <!-- COLUMNA CENTRAL: FEED -->
@@ -338,7 +371,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                        style="color:red; border:1px solid red; padding:4px 8px; border-radius:999px; background:transparent;">
+                                        style="color:red; border:1px solid red; padding:4px 8px; border-radius:999px; background:transparent; cursor: pointer">
                                     Eliminar
                                 </button>
                             </form>

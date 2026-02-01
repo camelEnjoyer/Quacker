@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quack;
+use App\Models\Quashtag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,34 @@ class QuackController extends Controller
     public function store(Request $request)
     {
 
-        Quack::create($request->all());
+        //dd(auth(), auth()->user());   
+     
+        $request->validate([
+            'contenido' => 'required|string'
+        ]);
 
-        return redirect('/quacks');
+        //Crear Quack
+        $quack = auth()->user()->quacks()->create([
+            'contenido' => $request->contenido,
+        ]);
+
+        //Extraer quashtags del texto
+        preg_match_all('/#(\w+)/u', $quack->contenido, $matches);
+        $quashtagNames = array_unique($matches[1]);
+
+        //Buscar o crear los quashtags
+        $quashtags = [];
+        foreach ($quashtagNames as $name){
+            $quashtag = Quashtag::firstOrCreate(['name' => $name]);
+            $quashtags[] = $quashtag->id;
+        }
+
+        //Asociar los quashtag al quack
+        if(!empty($quashtags)){
+            $quack->quashtags()->sync($quashtags);
+        }
+
+        return redirect('/feed');
     }
 
     /**

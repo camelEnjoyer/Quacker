@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
 
     // Feed principal
     Route::get('/feed', [feedController::class, 'index'])->name('feed');
+    Route::post('/feed', [QuackController::class, 'store']);
 
     // Logout
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
